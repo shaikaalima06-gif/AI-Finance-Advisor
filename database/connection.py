@@ -1,13 +1,16 @@
+
 import os
 import mysql.connector
 from mysql.connector import Error
 from dotenv import load_dotenv
-import os
 
-load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+# Load environment variables from the project's root .env file
+load_dotenv(
+    os.path.join(os.path.dirname(__file__), "..", ".env")
+)
 
 def get_connection():
-    """Returns a new MySQL connection. Caller is responsible for closing it."""
+    """Create a new MySQL connection."""
     try:
         connection = mysql.connector.connect(
             host=os.getenv("DB_HOST"),

@@ -1,4 +1,4 @@
-from connection import get_connection
+from database.connection import get_connection
 
 
 def create_goal(user_id, goal_name, target_amount, target_date):
