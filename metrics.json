@@ -1,0 +1,35 @@
+{
+  "Decision Tree": {
+    "cv_accuracy_mean": 0.8232,
+    "cv_accuracy_std": 0.0154,
+    "test_accuracy": 0.82,
+    "test_macro_f1": 0.7945
+  },
+  "Random Forest": {
+    "cv_accuracy_mean": 0.8532,
+    "cv_accuracy_std": 0.0123,
+    "test_accuracy": 0.857,
+    "test_macro_f1": 0.8407
+  },
+  "feature_importance": {
+    "savings_rate": 0.3252,
+    "expense_ratio": 0.2205,
+    "emergency_coverage": 0.1755,
+    "goal_progress": 0.1169,
+    "dti": 0.0653,
+    "debt_payment": 0.0282,
+    "expenses": 0.022,
+    "income": 0.0208,
+    "age": 0.0166,
+    "goal_amount": 0.009
+  },
+  "kmeans": {
+    "k": 3,
+    "silhouette": 0.2783,
+    "sizes": {
+      "Average Behaviour": 1999,
+      "Financially Healthy": 1908,
+      "High Risk": 1093
+    }
+  }
+}
