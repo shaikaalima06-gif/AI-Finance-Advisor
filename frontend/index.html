@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#061126">
+    <title>FinWise AI | Finance Advisor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="#" class="brand">
+                <span class="brand-icon">F</span>
+                <span>
+                    <strong>FinWise <em>AI</em></strong>
+                    <small>AI Finance Advisor</small>
+                </span>
+            </a>
+
+            <nav class="navigation">
+                <a href="#dashboard" class="nav-link active">▦ <span>Dashboard</span></a>
+                <a href="#transactions" class="nav-link">⇄ <span>Transactions</span></a>
+                <a href="#budget" class="nav-link">◉ <span>Budget Planner</span></a>
+                <a href="#goals" class="nav-link">◎ <span>Savings Goals</span></a>
+                <a href="#advisor" class="nav-link">✧ <span>Financial Advisor</span></a>
+                <a href="#reports" class="nav-link">▤ <span>Reports</span></a>
+            </nav>
+
+            <div class="premium-card">
+                <div class="crown">♛</div>
+                <h3>Your financial future</h3>
+                <p>Build better habits, one decision at a time.</p>
+                <button class="button button-primary" id="tipButton">
+                Get a finance tip
+                </button>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">U</div>
+                <div><strong>My Account</strong><small>Personal Finance</small></div>
+            </div>
+        </aside>
+
+    <!-- Main dashboard -->
+    <main class="main-content" id="dashboard">
+        <header class="topbar">
+            <button class="icon-button menu-button" id="menuButton"
+            aria-label="Toggle navigation">☰</button>
+            <div class="search-box">
+            <span>⌕</span>
+            <input id="searchInput" type="search"
+                placeholder="Search transactions...">
+            </div>
+            <div class="topbar-actions">
+                <span class="today-label" id="todayLabel"></span>
+                <div class="avatar small-avatar">U</div>
+            </div>
+
+        </header>
+
+        <!-- Welcome banner -->
+        <section class="welcome-banner">
+            <div class="welcome-copy">
+                <span class="eyebrow">YOUR MONEY, YOUR FUTURE</span>
+                <h1>Good day, there! <span>✦</span></h1>
+                <p>Here is your personal financial overview.</p>
+            </div>
+            <div class="welcome-art" aria-hidden="true">
+                <div class="orbit">✦</div>
+                <div class="robot">
+                    <div class="robot-antenna"></div>
+                    <div class="robot-face"><span>•ᴗ•</span></div>
+                    <div class="robot-body">↗</div>
+                </div>
+                <div class="floating-note">Small steps.<br><strong>Big goals.</strong></div>
+            </div>
+        </section>
+
+        <!-- Summary cards -->
+        <section class="stats-grid" aria-label="Financial summary">
+            <article class="stat-card">
+                <div class="stat-icon income-icon">↙</div>
+                <div class="stat-info">
+                    <p>Total Income</p>
+                    <h2 id="incomeDisplay">₹0</h2>
+                    <small>Money received</small>
+                </div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon expense-icon">↗</div>
+                <div class="stat-info">
+                    <p>Total Expenses</p>
+                    <h2 id="expenseDisplay">₹0</h2>
+                    <small>Money spent</small>
+                </div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon savings-icon">♧</div>
+                <div class="stat-info">
+                    <p>Total Savings</p>
+                    <h2 id="savingsDisplay">₹0</h2>
+                    <small>Income minus expenses</small>
+                </div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon rate-icon">◔</div>
+                <div class="stat-info">
+                    <p>Savings Rate</p>
+                    <h2 id="rateDisplay">0%</h2>
+                    <small>Of your income</small>
+                </div>
+            </article>
+        </section>
+
+        <!-- Charts -->
+        <section class="middle-grid">
+            <article class="panel chart-panel" id="reports">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Income vs Expenses</h2>
+                        <p>Your financial activity</p>
+                    </div>
+                    <span class="live-label"><span></span> Live</span>
+                </div>
+                <div class="chart-legend">
+                    <span><i class="legend-dot income-dot"></i> Income</span>
+                    <span><i class="legend-dot expense-dot"></i> Expenses</span>
+                </div>
+                <div class="bar-chart" id="barChart">
+                    <div class="chart-empty">Add transactions to see your chart.</div>
+                </div>
+            </article>
+
+            <article class="panel budget-panel" id="budget">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Expense Overview</h2>
+                        <p>Where your money goes</p>
+                    </div>
+                </div>
+                <div class="budget-content">
+                    <div class="donut-chart" id="donutChart">
+                        <div class="donut-center">
+                            <strong id="budgetPercent">0%</strong>
+                        <span>spent</span>
+                        </div>              
+                    </div>
+                    <div class="budget-legend" id="budgetLegend">
+                        <p class="muted">Add expenses to see categories.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Transactions and quick add -->
+        <section class="bottom-grid">
+            <article class="panel transactions-panel" id="transactions">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Recent Transactions</h2>
+                        <p>Your latest financial activity</p>
+                    </div>
+            
+                    <div class="heading-actions">
+                        <button class="text-button" id="downloadReportButton" type="button">
+                            ↓ Export CSV
+                        </button>
+                        <button class="text-button" id="clearSearchButton" type="button">
+                            Show all
+                        </button>
+                    </div>
+                </div>
+
+                <div class="transaction-list" id="transactionList">
+                    <div class="empty-state">
+                        <span>◎</span>
+                        <strong>No transactions yet</strong>
+                        <p>Add your first income or expense to get started.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="panel quick-add-panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Quick Add Transaction</h2>
+                        <p>Record your money activity</p>
+                    </div>
+                </div>
+
+                <form id="financeForm">
+                    <label for="type">Transaction type</label>
+                    <select id="type" name="type" required>
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
+                    <label for="description">Description</label>
+                    <input id="description" name="description" type="text"
+                    placeholder="e.g. Groceries or Salary" maxlength="60" required>
+
+                    <label for="amount">Amount (₹)</label>
+                    <input id="amount" name="amount" type="number"
+                    placeholder="Enter amount" min="0.01" step="0.01" required>
+
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="Food">Food & Groceries</option>
+                        <option value="Housing">Housing & Rent</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Bills">Bills & Utilities</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Health">Health</option>
+                        <option value="Education">Education</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Business">Business</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="date">Date</label>
+                    <input id="date" name="date" type="date" required>
+
+                    <button class="button button-primary submit-button" type="submit">
+                        + Add Transaction
+                    </button>
+                    <p class="form-message" id="formMessage" role="status"></p>
+                </form>
+            </article>
+        </section>
+
+        <!-- Budget planner and savings goals -->
+        <!--<section class="planning-grid" id="goals">
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Monthly Budget Planner</h2>
+                        <p>Set a limit and track your spending</p>
+                    </div>
+                    <span class="planning-icon">₹</span>
+                </div>
+
+                <form id="budgetForm" class="planning-form">
+                    <label for="monthlyBudget">Monthly spending limit (₹)</label>
+                    <input id="monthlyBudget" type="number" min="1" step="0.01"
+                            placeholder="e.g. 20000" required>
+                    <button class="button button-primary" type="submit">
+                        Save Budget
+                    </button>
+                    <p id="budgetMessage" class="form-message" role="status"></p>
+                </form>
+
+                <div class="budget-progress">
+                    <div class="progress-heading">
+                        <span>Budget used</span>
+                        <strong id="budgetUsageText">0%</strong>
+                    </div>
+                    <div class="progress-track">
+                        <div id="budgetUsageBar" class="progress-fill"></div>
+                    </div>
+                    <div class="progress-heading">
+                        <span id="budgetSpentText">Spent: ₹0</span>
+                        <span id="budgetRemainingText">Limit: not set</span>
+                    </div>
+                
+                    <p id="budgetStatus" class="muted">
+                        Set a budget to start tracking your spending.
+                    </p>
+                </div>
+            </article>
+
+            <article class="panel">
+            <div class="panel-heading">
+                <div>
+                    <h2>Savings Goals</h2>
+                    <p>Turn your plans into progress</p>
+                </div>
+                <span class="planning-icon">◎</span>
+            </div>
+
+            <form id="goalForm" class="planning-form">
+                <label for="goalName">Goal name</label>
+                <input id="goalName" type="text" maxlength="60"
+                    placeholder="e.g. New laptop" required>
+
+                <label for="goalTarget">Target amount (₹)</label>
+                <input id="goalTarget" type="number" min="1" step="0.01"
+                    placeholder="e.g. 60000" required>
+
+                <label for="goalSaved">Already saved (₹)</label>
+                <input id="goalSaved" type="number" min="0" step="0.01"
+                    value="0" required>
+
+                <button class="button button-primary" type="submit">
+                    + Create Savings Goal
+                </button>
+                <p id="goalMessage" class="form-message" role="status"></p>
+            </form>
+
+            <div id="goalsList" class="goals-list">
+                <p class="muted">Your savings goals will appear here.</p>
+            </div>
+            </article>
+        </section>-->
+
+        
+        <section class="savings-planner">
+            <h2>🎯 Savings Goal Planner</h2>
+            <p>Plan your savings and reach your financial goals.</p>
+
+            <form id="savingsGoalForm">
+                <label for="goalName">Goal Name</label>
+                <input
+                    type="text"
+                    id="goalName"
+                    placeholder="e.g. Buy a laptop"
+                    required
+                />
+
+                <label for="targetAmount">Target Amount (₹)</label>
+                <input
+                    type="number"
+                    id="targetAmount"
+                    min="1"
+                    step="0.01"
+                    placeholder="30000"
+                    required
+                />
+
+                <label for="savedAmount">Already Saved (₹)</label>
+                <input
+                    type="number"
+                    id="savedAmount"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                    required
+                />
+
+                <label for="deadline">Target Date</label>
+                <input type="date" id="deadline" required />
+
+                <button type="submit">Calculate Savings Plan</button>
+            </form>
+
+            <div id="savingsPlanResult" class="savings-result" hidden>
+            <h3 id="resultGoalName"></h3>
+
+            <p>Target Amount: <strong id="resultTarget"></strong></p>
+            <p>Already Saved: <strong id="resultSaved"></strong></p>
+            <p>Remaining Amount: <strong id="remainingAmount"></strong></p>
+
+            <div class="savings-summary">
+                <div class="savings-card">
+                    <span>Save Per Day</span>
+                    <strong id="dailySavings"></strong>
+                </div>
+
+                <div class="savings-card">
+                    <span>Save Per Month</span>
+                    <strong id="monthlySavings"></strong>
+                </div>
+            </div>
+
+            <p>Time Remaining: <strong id="daysRemaining"></strong></p>
+            <p>Goal Progress: <strong id="goalProgress"></strong></p>
+
+            <div class="progress-track">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            </div>
+        </section>
+
+
+
+        <!-- AI tip -->
+        <section class="panel advisor-panel" id="advisor">
+            <div class="advisor-icon">✦</div>
+            <div class="advisor-copy">
+                <span class="eyebrow">YOUR FINANCIAL COMPANION</span>
+                <h2>FinWise AI Finance Tip</h2>
+                <p id="aiTip">Start by tracking your income and expenses. Understanding
+                    where your money goes is the first step toward saving more.</p>
+
+            
+                <div class="ai-ask">
+                    <label for="aiQuestion">Ask your financial advisor</label>
+                    <textarea id="aiQuestion" rows="2"
+                    placeholder="How can I improve my monthly savings?"></textarea>
+                    <button class="button button-secondary" id="askAiButton" type="button">
+                        Ask FinWise AI →
+                    </button>
+                    <p id="aiStatus" class="form-message" role="status"></p>
+                </div>
+
+                <button class="button button-secondary" id="newTipButton">
+                    Get another tip →
+                </button>
+            </div>
+            <div class="advisor-illustration" aria-hidden="true">
+                <div class="mini-robot">•ᴗ•</div>
+                <span>✧</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <span>FinWise AI</span> · Make every rupee count.
+        </footer>
+    </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
